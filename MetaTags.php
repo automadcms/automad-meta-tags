@@ -1,8 +1,18 @@
 <?php
+/**
+ *	Automad Meta Tags
+ *
+ * 	An Automad meta tags extension.
+ *
+ * 	@author Marc Anton Dahmen
+ * 	@copyright Copyright (C) 2018 Marc Anton Dahmen - <https://marcdahmen.de> 
+ * 	@license MIT license
+ */
 
 namespace Automad;
 
 defined('AUTOMAD') or die('Direct access not permitted!');
+
 
 class MetaTags {
 	
@@ -17,7 +27,54 @@ class MetaTags {
 	
 	public function MetaTags($options, $Automad) {
 		
+		$Page = $Automad->Context->get();
 		
+		$defaults = array(
+			'title' => $Automad->Shared->get('sitename') . ' / ' . $Page->get('title'),
+			'description' => false,
+			'ogTitle' => $Automad->Shared->get('sitename') . ' / ' . $Page->get('title'),
+			'ogDescription' => false,
+			'ogType' => 'website',
+			'ogImage' => false
+		);
+		
+		$options = array_merge($defaults, $options);
+		
+		$host = getenv('HTTP_HOST');
+		$protocol = 'http';
+		
+		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+			$protocol = 'https';
+		}
+		
+		$baseUrl = $protocol . '://' . $host . AM_BASE_URL;
+		$baseIndex = $protocol . '://' . $host . AM_BASE_INDEX;
+		
+		$html = '<meta property="og:type" content="' . $options['ogType'] . '">' . 
+		        '<meta property="og:url" content="' . $baseIndex . $Page->url . '">';
+		
+		if ($options['ogImage']) {
+			
+			$files = Core\Parse::fileDeclaration($options['ogImage'], $Page);
+			
+			if ($files) {
+				$file = reset($files);
+				$Image = new Core\Image($file);
+				$src =  $baseUrl . $Image->file;
+			} else {
+				$src = $options['ogImage'];
+			}
+			
+			$html .= '<meta property="og:image" content="' . $src . '">';
+			
+		}
+		
+		$html .= '<meta property="og:description" content="' . Core\Str::shorten($options['ogDescription'], 300) . '">' .
+		         '<meta property="og:title" content="' . $options['ogTitle'] . '">' .
+				 '<meta name="description" content="' . Core\Str::shorten($options['description'], 300) . '">' .
+				 '<title>' . $options['title'] . '</title>';
+		
+		return $html;
 		
 	}
 	
