@@ -1,0 +1,2 @@
+# Automad Meta Tags Extension
+
