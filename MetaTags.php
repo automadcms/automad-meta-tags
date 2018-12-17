@@ -30,7 +30,6 @@ class MetaTags {
 		$Page = $Automad->Context->get();
 		
 		$defaults = array(
-			'title' => $Automad->Shared->get('sitename') . ' / ' . $Page->get('title'),
 			'description' => false,
 			'ogTitle' => $Automad->Shared->get('sitename') . ' / ' . $Page->get('title'),
 			'ogDescription' => false,
@@ -71,8 +70,7 @@ class MetaTags {
 		
 		$html .= '<meta property="og:description" content="' . Core\Str::shorten($options['ogDescription'], 300) . '">' .
 		         '<meta property="og:title" content="' . $options['ogTitle'] . '">' .
-				 '<meta name="description" content="' . Core\Str::shorten($options['description'], 300) . '">' .
-				 '<title>' . $options['title'] . '</title>';
+				 '<meta name="description" content="' . Core\Str::shorten($options['description'], 300) . '">';
 		
 		return $html;
 		
