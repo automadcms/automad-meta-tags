@@ -49,8 +49,22 @@ class MetaTags {
 		$baseUrl = $protocol . '://' . $host . AM_BASE_URL;
 		$baseIndex = $protocol . '://' . $host . AM_BASE_INDEX;
 		
-		$html = '<meta property="og:type" content="' . $options['ogType'] . '">' . 
-		        '<meta property="og:url" content="' . $baseIndex . $Page->url . '">';
+		$html = '';
+		
+		if ($options['description']) {
+			$html .= '<meta name="description" content="' . Core\Str::shorten($options['description'], 160) . '" />';
+		}
+		
+		if ($options['ogTitle']) {
+			$html .= '<meta property="og:title" content="' . $options['ogTitle'] . '" />';
+		}
+		
+		if ($options['ogDescription']) {
+			$html .= '<meta property="og:description" content="' . Core\Str::shorten($options['ogDescription'], 320) . '" />';
+		}
+		
+		$html .= '<meta property="og:type" content="' . $options['ogType'] . '" />' . 
+		         '<meta property="og:url" content="' . $baseIndex . $Page->url . '" />';
 		
 		if ($options['ogImage']) {
 			
@@ -59,18 +73,14 @@ class MetaTags {
 			if ($files) {
 				$file = reset($files);
 				$Image = new Core\Image($file);
-				$src =  $baseUrl . $Image->file;
+				$imageUrl =  $baseUrl . $Image->file;
 			} else {
-				$src = $options['ogImage'];
+				$imageUrl = $options['ogImage'];
 			}
 			
-			$html .= '<meta property="og:image" content="' . $src . '">';
+			$html .= '<meta property="og:image" content="' . $imageUrl . '" />';
 			
 		}
-		
-		$html .= '<meta property="og:description" content="' . Core\Str::shorten($options['ogDescription'], 300) . '">' .
-		         '<meta property="og:title" content="' . $options['ogTitle'] . '">' .
-				 '<meta name="description" content="' . Core\Str::shorten($options['description'], 300) . '">';
 		
 		return $html;
 		
