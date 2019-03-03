@@ -30,11 +30,14 @@ class MetaTags {
 		$Page = $Automad->Context->get();
 		
 		$defaults = array(
+			'charset' => 'utf-8',
+			'viewport' => 'width=device-width, initial-scale=1, shrink-to-fit=no',
 			'description' => false,
 			'ogTitle' => $Automad->Shared->get('sitename') . ' / ' . $Page->get('title'),
 			'ogDescription' => false,
 			'ogType' => 'website',
-			'ogImage' => false
+			'ogImage' => false,
+			'twitterCard' => false
 		);
 		
 		$options = array_merge($defaults, $options);
@@ -50,6 +53,9 @@ class MetaTags {
 		$baseIndex = $protocol . '://' . $host . AM_BASE_INDEX;
 		
 		$html = '';
+		
+		$html .= '<meta charset="' . $options['charset'] . '" />';
+		$html .= '<meta name="viewport" content="' . $options['viewport'] . '" />';
 		
 		if ($options['description']) {
 			$html .= '<meta name="description" content="' . Core\Str::shorten($options['description'], 160) . '" />';
@@ -80,6 +86,10 @@ class MetaTags {
 			
 			$html .= '<meta property="og:image" content="' . $imageUrl . '" />';
 			
+		}
+		
+		if ($options['twitterCard']) {
+			$html .= '<meta name="twitter:card" content="' . $options['twitterCard'] . '" />';
 		}
 		
 		return $html;
