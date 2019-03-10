@@ -1,6 +1,6 @@
 # Automad Meta Tags Extension
 
-This extension creates a couple of meta tags for the `<head></head>` section in a template. The following meta tags are supported:
+This extension creates a couple of meta tags for the `<head></head>` section in a template. It also supports the Open Graph protocol to create beautiful preview cards for Facebook and Twitter. The following meta tags are available:
 
 * `charset="..."`
 * `name="viewport"`
@@ -17,7 +17,7 @@ This extension creates a couple of meta tags for the `<head></head>` section in 
 The extension can be used in templates as follows:
 
 	<@ Automad/MetaTags { options } @>
-		
+
 ## Options 
 
 The following options are available:
