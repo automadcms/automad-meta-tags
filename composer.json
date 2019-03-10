@@ -1,6 +1,6 @@
 {
     "name": "automad/meta-tags",
-    "description": "Automad meta tags extension",
+    "description": "This Automad extension creates meta tags in templates. It also supports the Open Graph protocol to create beautiful preview cards for Facebook and Twitter.",
     "type": "automad-package",
     "keywords": ["extension"],
     "license": "MIT",
