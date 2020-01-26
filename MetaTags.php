@@ -71,6 +71,7 @@ class MetaTags {
 		
 		$html .= '<meta property="og:type" content="' . $options['ogType'] . '" />' . 
 		         '<meta property="og:url" content="' . $baseIndex . $Page->url . '" />';
+		         
 		
 		if ($options['ogImage']) {
 			
@@ -90,6 +91,11 @@ class MetaTags {
 		
 		if ($options['twitterCard']) {
 			$html .= '<meta name="twitter:card" content="' . $options['twitterCard'] . '" />';
+        	$html .= '<meta name="twitter:title" content="' . $options['ogTitle'] . '" />';
+        	$html .= '<meta name="twitter:description" content="' . Core\Str::shorten($options['ogDescription'], 320) . '" />';
+        	$html .= '<meta name="twitter:url" content="' . $baseIndex . $Page->url . '" />';
+        	$html .= '<meta name="twitter:image" content="' . $imageUrl . '" />';
+
 		}
 		
 		return $html;
