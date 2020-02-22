@@ -22,14 +22,16 @@ The extension can be used in templates as follows:
 
 The following options are available:
 
-* `charset`: The charset. The default is `utf-8`.
-* `viewport`: The viewport setting. The default is `width=device-width, initial-scale=1, shrink-to-fit=no`.
-* `description`: The meta description. By default there is no description. Any variable can be used.
-* `ogTitle`: The open graph title. By default, a combination of the `sitename` and `title` variables is used.
-* `ogDescription`: The open graph description. By default there is no description. Any variable can be used.
-* `ogType`: The open graph type. The default is 'website'.
-* `ogImage`: The open graph image. By default there is no image defined. Any variable or string can be used here. It is possible to use an external URL to an image as well as a glob pattern to a local image. 
-* `twitterCard`: The Twitter card style. The default is `false` (no tag). 
+| Name | Description |
+|------|-------------|
+| `charset` | The charset. The default is `utf-8`. |
+| `viewport` | The viewport setting. The default is `width=device-width, initial-scale=1, shrink-to-fit=no`. |
+| `description` | The meta description. By default there is no description. Any variable can be used. |
+| `ogTitle` | The open graph title. By default, a combination of the `sitename` and `title` variables is used. |
+| `ogDescription` | The open graph description. By default there is no description. Any variable can be used. |
+| `ogType` | The open graph type. The default is 'website'. |
+| `ogImage` | The open graph image. By default there is no image defined. Any variable or string can be used here. It is possible to use an external URL to an image as well as a glob pattern to a local image. | 
+| `twitterCard` | The Twitter card style. The default is `false` (no tag). |
 
 ## Example
 
