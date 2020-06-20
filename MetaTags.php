@@ -5,7 +5,7 @@
  * 	An Automad meta tags extension.
  *
  * 	@author Marc Anton Dahmen
- * 	@copyright Copyright (C) 2018 Marc Anton Dahmen - <https://marcdahmen.de> 
+ * 	@copyright Copyright (C) 2018-2020 Marc Anton Dahmen - <https://marcdahmen.de> 
  * 	@license MIT license
  */
 
@@ -37,7 +37,7 @@ class MetaTags {
 			'ogDescription' => false,
 			'ogType' => 'website',
 			'ogImage' => false,
-			'twitterCard' => false
+			'twitterCard' => true
 		);
 		
 		$options = array_merge($defaults, $options);
@@ -58,7 +58,7 @@ class MetaTags {
 		$html .= '<meta name="viewport" content="' . $options['viewport'] . '" />';
 		
 		if ($options['description']) {
-			$html .= '<meta name="description" content="' . Core\Str::shorten($options['description'], 160) . '" />';
+			$html .= '<meta name="description" content="' . htmlspecialchars(Core\Str::shorten($options['description'], 160)) . '" />';
 		}
 		
 		if ($options['ogTitle']) {
@@ -66,7 +66,7 @@ class MetaTags {
 		}
 		
 		if ($options['ogDescription']) {
-			$html .= '<meta property="og:description" content="' . Core\Str::shorten($options['ogDescription'], 320) . '" />';
+			$html .= '<meta property="og:description" content="' . htmlspecialchars(Core\Str::shorten($options['ogDescription'], 320)) . '" />';
 		}
 		
 		$html .= '<meta property="og:type" content="' . $options['ogType'] . '" />' . 
